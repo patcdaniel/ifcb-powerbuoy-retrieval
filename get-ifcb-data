@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# A shell script to pull data off the IFCB deployed on the MBARI Power Buoy
+# This script gives very loose permissions to the data files, organizes them localled (and
+# redundantly) and sends them to Axiom using an rsync routine.
+#
+# This script runs every 15 minutes, on a CRON job (check contrab -e). There is another job
+# that runs every 4 hours (as of 2021/08/24) to pull down data from instrument.
+#
+# Author: Patrick Daniel - 2021/07/14 - Big Update 2021/08/21
+
+
+# Change file permissions to the most 777 to avoid any issues downsteam.
+chmod 777 /opt/ifcb-data/power-buoy-deployment/*.roi
+chmod 777 /opt/ifcb-data/power-buoy-deployment/*.adc
+chmod 777 /opt/ifcb-data/power-buoy-deployment/*.hdr
+
+# Organize files locally 
+/usr/bin/python3 /home/ifcb/bin/transfer.py
+
+# Push files to Axiom using Rsync
+rsync -rqzme ssh  /opt/ifcb-data/power-buoy-deployment/CA-IFCB-161 ifcb_mbari@data.axds.co:
