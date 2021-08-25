@@ -4,6 +4,7 @@ import os
 import paramiko
 import glob
 import time
+import transfer
 
 
 class RemoteIFCBSync:
@@ -88,3 +89,5 @@ if __name__ == "__main__":
     remote.sync_files()
     remote.sync_files(beads=True)
     remote.close()
+    transfer.transfer_files_directories() 
+    subprocess.call(['sh', '/home/ifcb/bin/get-ifcb-data'])

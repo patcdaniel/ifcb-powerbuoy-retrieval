@@ -16,7 +16,7 @@ chmod 777 /opt/ifcb-data/power-buoy-deployment/*.adc
 chmod 777 /opt/ifcb-data/power-buoy-deployment/*.hdr
 
 # Organize files locally 
-/usr/bin/python3 /home/ifcb/bin/transfer.py
+# /usr/bin/python3 /home/ifcb/bin/transfer.py
 
 # Push files to Axiom using Rsync
 rsync -rqzme ssh  /opt/ifcb-data/power-buoy-deployment/CA-IFCB-161 ifcb_mbari@data.axds.co:
