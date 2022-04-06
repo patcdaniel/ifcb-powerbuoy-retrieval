@@ -1,0 +1,2 @@
+If some files didnt transfer, run mannually with:
+scp -l 1000 ifcb@buoy-ifcb.shore.mbari.org:/mnt/data/ifcbdata/D20211003T194401_IFCB161.adc /opt/ifcb-data/power-buoy-deployment/
